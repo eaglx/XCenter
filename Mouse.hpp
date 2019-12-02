@@ -3,6 +3,10 @@
 #include <X11/Xutil.h>
 #include <X11/extensions/XTest.h>
 
+/*
+Ubuntu need to install: x11proto-dev, libxtst-dev, xdotool
+*/
+
 #define LEFT_MOUSE_BUTTON 1
 #define RIGHT_MOUSE_BUTTON 3
 

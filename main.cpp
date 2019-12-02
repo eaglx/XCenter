@@ -1,23 +1,33 @@
 #include <iostream>
+#include <memory>
+#include <cstdlib>
 #include "Mouse.hpp"
-/*
-Ubuntu need: x11proto-dev, libxtst-dev
-*/
 
 int main(int argc, char **argv)
 {
-    std::cout << "TEST" << std::endl;
+    std::cout << "dev-center-rpi v0.1" << std::endl;
+    
+    int srvport;
+    int srvbacksize;
 
-    Mouse *m = new Mouse();
+    if(argc == 3) {
+        srvport = atoi(argv[1]);
+        srvbacksize = atoi(argv[2]);
+    }
+
+    std::unique_ptr<Mouse> m(new Mouse());
 
     if(!m->checkIfInit()) {
         std::cout << "ERROR: FAILED TO INIT Mouse MODULE!" << std::endl;
-        goto MAIN_END;
+        return -1;
     }
 
      m->test();
 
-MAIN_END:
-    delete m;
+     /*
+        control the mouse with the numpad
+        setxkbmap -option keypad:pointerkeys 
+     */
+
     return 0;
 }

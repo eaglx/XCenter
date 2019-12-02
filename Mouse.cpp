@@ -12,7 +12,7 @@ Mouse::~Mouse()
 
 bool Mouse::checkIfInit() 
 {
-    if(display == NULL) return false;
+    if(display == nullptr) return false;
     return true;
 }
 
@@ -47,4 +47,8 @@ void Mouse::test()
     move(100, 100);
     button_make(RIGHT_MOUSE_BUTTON);
     button_break(RIGHT_MOUSE_BUTTON);
+
+    // Cannot test on the VBox
+    XWarpPointer(display, None, None, 0, 0, 0, 0, 10, 10); // Or use xdotool mousemove x y
+    XFlush(display);
 }
