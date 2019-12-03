@@ -29,7 +29,7 @@ class Mouse{
                     3 - right mouse button
         */
         void button_break(unsigned int);
-        void move(int, int);
-        void setm(int, int);
+        int move(int, int);
+        int setm(int, int);
         void test();
 };
