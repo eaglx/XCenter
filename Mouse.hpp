@@ -18,10 +18,14 @@ class Mouse{
         Screen *s;
         int limitX;
         int limitY;
+        int currentX;
+        int currentY;
+        int move(int, int);
+
     public:
         Mouse();
         ~Mouse();
-        bool checkIfInit();
+        bool initMouseModule();
         void button_make(unsigned int);
         /*
             button_*(value):
@@ -29,7 +33,7 @@ class Mouse{
                     3 - right mouse button
         */
         void button_break(unsigned int);
-        int move(int, int);
         int setm(int, int);
+        void updateCursorPosition(int, int);
         void test();
 };

@@ -10,15 +10,18 @@ Mouse::~Mouse()
     if(display != NULL) XCloseDisplay(display);
 }
 
-bool Mouse::checkIfInit()
+bool Mouse::initMouseModule()
 {
     if(display == nullptr)
     {
         return false;
     }
     s = DefaultScreenOfDisplay(display);
-    limitX = s->height;
-    limitY = s->width;
+    limitY = s->height;
+    limitX = s->width;
+    currentX = static_cast<int>(limitX/2);
+    currentY = static_cast<int>(limitY/2);
+    setm(currentX, currentY);
     return true;
 }
 
@@ -33,6 +36,15 @@ int Mouse::move(int x, int y)
         XTestFakeRelativeMotionEvent(display, x, y, 0);
         XFlush(display);
         return 1;
+    }
+}
+
+void Mouse::updateCursorPosition(int addX, int addY)
+{
+    if(move(currentX + addX, currentY + addY) == 1)
+    {
+        currentX += addX;
+        currentY += addY;
     }
 }
 
@@ -67,7 +79,7 @@ void Mouse::test()
 {
     if(setm(0, 0) == 1) std::cout << "setm() PASS" << std::endl;
     else std::cout << "setm() FAILED" << std::endl;
-    if(move(100, 100) == 1) std::cout << "move() PASS" << std::endl;
+    if(move(1910, 100) == 1) std::cout << "move() PASS" << std::endl;
     else std::cout << "move() FAILED" << std::endl;
     button_make(RIGHT_MOUSE_BUTTON);
     button_break(RIGHT_MOUSE_BUTTON);

@@ -6,7 +6,7 @@
 int main(int argc, char **argv)
 {
     std::cout << "dev-center-rpi v0.1" << std::endl;
-    
+
     int srvport;
     int srvbacksize;
 
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 
     std::unique_ptr<Mouse> m(new Mouse());
 
-    if(!m->checkIfInit()) {
+    if(!m->initMouseModule()) {
         std::cout << "ERROR: FAILED TO INIT Mouse MODULE!" << std::endl;
         return -1;
     }
@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 
      /*
         control the mouse with the numpad
-        setxkbmap -option keypad:pointerkeys 
+        setxkbmap -option keypad:pointerkeys
      */
 
     return 0;
