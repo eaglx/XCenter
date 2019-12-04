@@ -1,6 +1,6 @@
 PROJECTNAME = dev-center
 CC = g++
-CFLAGS = -Wall -Wextra -std=c++11 -lX11 -lXtst -g # -g for debug
+CFLAGS = -Wall -Wextra -std=c++11 -lX11 -lXtst -lXext -g # -g for debug
 PRSOURCES = main.cpp Mouse.cpp Keyboard.cpp Server.cpp
 PROBJECTS = $(PRSOURCES:.cpp=.o)
 PREXEC = $(PROJECTNAME).exe
