@@ -33,7 +33,7 @@ CServer::CServer(int port, int backlogQueueSize)
 
 CServer::~CServer()
 {
-
+    close(server_fd);
 }
 
 int CServer::setup()
@@ -47,6 +47,7 @@ int CServer::setup()
     // Forcefully attaching socket to the port
     if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) 
     { 
+        close(server_fd);
         return -302;
     }
 
@@ -60,15 +61,15 @@ int CServer::setup()
     // Forcefully attaching socket to the port 8080 
     if (bind(server_fd, (struct sockaddr *)&address, sizeof(address))<0) 
     { 
+        close(server_fd);
         return -303;
     }
 
     if (listen(server_fd, backlogQueueSize) < 0) 
     { 
+        close(server_fd);
         return -304;
     } 
-
-
 }
 
 int CServer::sendData(int socket, void *buffer, size_t length)
