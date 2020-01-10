@@ -1,4 +1,4 @@
-PROJECTNAME = RaspCenter
+PROJECTNAME = XCenter
 CC = g++
 CFLAGS = -Wall -Wextra -std=c++11 -lX11 -lXtst -lXext -g # -g for debug
 PRSOURCES = main.cpp Mouse.cpp Keyboard.cpp Server.cpp
